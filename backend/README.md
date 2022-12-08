@@ -16,7 +16,7 @@ GET ```http://localhost:3005/api/applications```
 
 ### search by name
 
-GET ```http://localhost:3005/api/applications?name_like=${value}```
+GET ```http://localhost:3005/api/applications/search/${value}```
 
 ### sort
 
