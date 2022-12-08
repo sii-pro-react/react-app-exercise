@@ -3,7 +3,7 @@ let applications;
 
 // POST new one
 
-data = await fetch("http://localhost:3005/applications", {
+data = await fetch("http://localhost:3005/api/applications", {
   method: "POST",
   headers: {
     Accept: "application/json",
@@ -22,7 +22,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 // GET ALL
 
-data = await fetch("http://localhost:3005/applications", {
+data = await fetch("http://localhost:3005/api/applications", {
   method: "GET",
   headers: {
     Accept: "application/json",
@@ -38,7 +38,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 const value = "enity";
 
-data = await fetch(`http://localhost:3005/applications?name_like=${value}`, {
+data = await fetch(`http://localhost:3005/api/applications?name_like=${value}`, {
   method: "GET",
   headers: {
     Accept: "application/json",
@@ -54,7 +54,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 const deleteId = "kqIn5Vj";
 
-data = await fetch(`http://localhost:3005/applications/${deleteId}`, {
+data = await fetch(`http://localhost:3005/api/applications/${deleteId}`, {
   method: "DELETE",
   headers: {
     Accept: "application/json",
@@ -68,7 +68,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 // SORT
 
-data = await fetch("http://localhost:3005/applications?_sort=name&_order=asc", {
+data = await fetch("http://localhost:3005/api/applications?_sort=name&_order=asc", {
   method: "GET",
   headers: {
     Accept: "application/json",
@@ -82,7 +82,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 // PAGINATION
 
-data = await fetch("http://localhost:3005/applications?_limit=3&_page=2", {
+data = await fetch("http://localhost:3005/api/applications?_limit=3&_page=2", {
   method: "GET",
   headers: {
     Accept: "application/json",
