@@ -1,0 +1,4 @@
+{
+  "/api/*": "/$1",
+  "/applications/search/:name": "/applications?name_like=:name"
+}

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "json-server db.json --port 3005 --watch --routes routes.json",
+    "start:delay": "json-server db.json --port 3005 --watch --routes routes.json --middlewares ./middlewares/delay.js"
   },
   "keywords": [],
   "author": "",

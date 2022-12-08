@@ -38,7 +38,7 @@ console.log(JSON.stringify(applications, null, 2));
 
 const value = "enity";
 
-data = await fetch(`http://localhost:3005/api/applications?name_like=${value}`, {
+data = await fetch(`http://localhost:3005/api/applications/search/${value}`, {
   method: "GET",
   headers: {
     Accept: "application/json",
