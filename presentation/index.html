@@ -16,19 +16,17 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
-					<textarea data-template>
-						# slajd 1
 
-						markdown w akcji
-					</textarea>
-				</section>
-				<section>Slide 1</section>
-				<section>
-					<section>vertical 1</section>
-					<section>vertical 2</section>
-				</section>
-				<section>Slide 1</section>
+				<!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines -->
+				<section data-markdown="markdown/intro.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+				<section data-markdown="markdown/vite.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+				<section data-markdown="markdown/json-server.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+				
+				<section data-markdown="markdown/react-query.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+
+				<section data-markdown="markdown/style.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
 			</div>
 		</div>
 
