@@ -23,7 +23,7 @@ npm i json-server
 
 To start json-server it is enough to create database file like _db.json_ with data as array in specific key. Here database has only one key wherefrom we will get data
 
-```json[2,9|3-8]
+```json[1,10|2,9|3-8]
 {
   "applications": [
     {
@@ -76,12 +76,10 @@ GET /applications/He110-W0rD
 <!-- .slide: data-background="#330000" -->
 ## pagination
 
-```bash[1|2]
+```bash[1|2|4|5]
 _limit=:value
 _page=:value
-```
 
-```bash[1|2]
 GET /:key-what-you-wont-to-get?_limit_=:value&_page=:value
 GET /applications?_limit_=3&_page=3
 ```
@@ -90,12 +88,10 @@ GET /applications?_limit_=3&_page=3
 <!-- .slide: data-background="#330000" -->
 ## order
 
-```bash[1|2]
+```bash[1|2|4|5]
 _sort=:keyName
 _order=:asc|desc
-```
 
-```bash[1|2]
 GET /:key-what-you-wont-to-get?_sort=:keyName&_order=asc|desc
 GET /applications?_sort=name&_order=asc
 ```
@@ -111,7 +107,7 @@ POST /applications
 
 and json data
 
-```json[2|3]
+```json[1,4|2|3]
 {
   "id": "S0mE-Id", // optional
   "name": "new name"
@@ -131,7 +127,7 @@ PUT /applications/He110-W0rD
 
 and json data - only keys that needed to be update
 
-```json
+```json[1,3|2]
 {
   "name": "updated name"
 }
@@ -157,7 +153,7 @@ response from request will be empty element
 to customize routes we need to create _routes.json_ file
 this one will create _/api_ prefix for all routes
 
-```json
+```json[1,3|2]
 {
   "/api/*": "/$1"
 }
