@@ -15,6 +15,6 @@ https://github.com/blazejSII/react-app
 ```bash[1|2|3|4]
 vite
 json-server
-react-query
-styling
+react-table-component
+.module.scss and clsx
 ```
