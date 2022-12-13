@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "backend": "cd ../backend && npm run start",
+    "backend:delay": "cd ../backend && npm run start:delay",
     "dev": "concurrently --kill-others \"vite\" \"npm run backend\"",
+    "dev:delay": "concurrently --kill-others \"vite\" \"npm run backend:delay\"",
     "build": "tsc && vite build",
     "lint": "eslint . --ext .ts,.tsx",
     "preview": "vite preview"
