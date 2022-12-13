@@ -47,7 +47,7 @@ $ json-server db.json
 this will run by default on 
 
 ```bash
-GET 
+localhost:3000/
 ```
 
 
@@ -69,7 +69,7 @@ return will be an array of elements
 
 ```bash[1|2]
 GET /:key-what-you-wont-to-get/:id
-GET /applications/He110-W0rD
+GET /applications/He110-W0r1D
 ```
 
 
@@ -122,7 +122,7 @@ response from request will be new element with "id" if "id" is not provided it w
 
 ```bash[1|2]
 PUT /:key-what-you-wont-to-post-data/:id
-PUT /applications/He110-W0rD
+PUT /applications/He110-W0r1D
 ```
 
 and json data - only keys that needed to be update
@@ -141,7 +141,7 @@ response from request will be updated element
 
 ```bash[1|2]
 DELETE /:key-what-you-wont-to-post-data/:id
-DELETE /applications/He110-W0rD
+DELETE /applications/He110-W0r1D
 ```
 
 response from request will be empty element
