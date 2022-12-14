@@ -4,14 +4,14 @@ import { deleteItem, fetchData } from '../../api';
 import { Context } from '../../App';
 import type { IDataItem } from '../../types';
 
-interface IModalProps {
+interface IRemoveModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   selectedItem: IDataItem | null;
   setData: React.Dispatch<React.SetStateAction<IDataItem[] | null>>;
 }
 
-const Modal = ({ setIsModalOpen, isModalOpen, selectedItem, setData }: IModalProps) => {
+const Remove = ({ setIsModalOpen, isModalOpen, selectedItem, setData }: IRemoveModalProps) => {
   const alert = useContext(Context);
 
   const handleOk = async () => {
@@ -45,4 +45,4 @@ const Modal = ({ setIsModalOpen, isModalOpen, selectedItem, setData }: IModalPro
   );
 };
 
-export default Modal;
+export default Remove;
