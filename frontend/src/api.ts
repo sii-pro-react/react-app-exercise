@@ -32,3 +32,17 @@ export const addItem = async (item: Omit<IDataItem, 'id'>) => {
     throw new Error('Something went wrong');
   }
 };
+
+export const modifyItem = async (item: IDataItem) => {
+  const { id, ...rest } = item;
+
+  const response = await fetch(`${path}/api/applications/${id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(rest),
+  });
+
+  if (!response.ok) {
+    throw new Error('Something went wrong');
+  }
+};

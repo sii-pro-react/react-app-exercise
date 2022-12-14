@@ -2,7 +2,7 @@ export type IDataItem = {
   id: string;
   name: string;
   description: string;
-  enabled: boolean;
+  removable: boolean;
 };
 
 export type INotificationContext = {

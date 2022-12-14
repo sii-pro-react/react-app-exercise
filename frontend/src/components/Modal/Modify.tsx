@@ -1,17 +1,18 @@
 import { Button, Form, Input, Modal as ModalAntD, Switch } from 'antd';
 import { useContext, useState } from 'react';
-import { fetchData, addItem } from '../../api';
+import { fetchData, modifyItem } from '../../api';
 import { Context } from '../../App';
 import type { IDataItem } from '../../types';
 import classes from './style.module.scss';
 
-interface IAddModalProps {
+interface IModifyModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   setData: React.Dispatch<React.SetStateAction<IDataItem[] | null>>;
+  selectedItem: IDataItem | null;
 }
 
-const Add = ({ setIsModalOpen, isModalOpen, setData }: IAddModalProps) => {
+const Modify = ({ setIsModalOpen, isModalOpen, setData, selectedItem }: IModifyModalProps) => {
   const alert = useContext(Context);
   const [pending, setPending] = useState(false);
   const [form] = Form.useForm();
@@ -20,13 +21,13 @@ const Add = ({ setIsModalOpen, isModalOpen, setData }: IAddModalProps) => {
     setIsModalOpen(false);
   };
 
-  const onFinish = async (values: Omit<IDataItem, 'id'>) => {
+  const onFinish = async (values: IDataItem) => {
     try {
       setPending(true);
-      await addItem({ ...values, removable: Boolean(values.removable) });
+      await modifyItem({ ...values, removable: Boolean(values.removable), id: selectedItem?.id ?? '' });
       setData(await fetchData());
       form.resetFields();
-      alert?.success('Element added successfully');
+      alert?.success('Element modified successfully');
     } catch (error) {
       console.error(error);
       alert?.error('Error occurred - please try again');
@@ -56,19 +57,30 @@ const Add = ({ setIsModalOpen, isModalOpen, setData }: IAddModalProps) => {
           autoComplete="off"
           disabled={pending}
         >
-          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name!' }]}>
+          <Form.Item
+            label="Name"
+            name="name"
+            initialValue={selectedItem?.name}
+            rules={[{ required: true, message: 'Please input name!' }]}
+          >
             <Input />
           </Form.Item>
 
           <Form.Item
             label="Description"
             name="description"
+            initialValue={selectedItem?.description}
             rules={[{ required: true, message: 'Please input description!' }]}
           >
             <Input />
           </Form.Item>
 
-          <Form.Item label="Is removable" name="removable" valuePropName="checked">
+          <Form.Item
+            label="Is removable"
+            name="removable"
+            initialValue={selectedItem?.removable}
+            valuePropName="checked"
+          >
             <Switch />
           </Form.Item>
 
@@ -83,4 +95,4 @@ const Add = ({ setIsModalOpen, isModalOpen, setData }: IAddModalProps) => {
   );
 };
 
-export default Add;
+export default Modify;

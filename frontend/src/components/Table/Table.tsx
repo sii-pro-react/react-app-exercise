@@ -2,6 +2,7 @@ import DataTable from 'react-data-table-component';
 import { useEffect, useState } from 'react';
 import RemoveModal from '../Modal/Remove';
 import AddModal from '../Modal/Add';
+import ModifyModal from '../Modal/Modify';
 import type { IDataItem } from '../../types';
 import { fetchData } from '../../api';
 import NoData from '../NoData/NoData';
@@ -13,11 +14,14 @@ const Table = () => {
   const [data, setData] = useState<IDataItem[] | null>(null);
   const [isRemoveModalOpen, setIsRemoveModalOpen] = useState(false);
   const [isAddModalOpen, setIAddModalOpen] = useState(false);
+  const [isModifyModalOpen, setIsModifyModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IDataItem | null>(null);
+  const [pending, setPending] = useState(true);
 
   useEffect(() => {
     const initData = async () => {
       setData(await fetchData());
+      setPending(false);
     };
 
     !data && initData();
@@ -28,7 +32,12 @@ const Table = () => {
     setSelectedItem(item);
   };
 
-  if (!data?.length) {
+  const handleModify = (item: IDataItem) => {
+    setIsModifyModalOpen(true);
+    setSelectedItem(item);
+  };
+
+  if (data?.length === 0) {
     return <NoData />;
   }
 
@@ -41,10 +50,11 @@ const Table = () => {
       </div>
       <DataTable
         title="List of secret items 🐱‍👤"
-        columns={columns(handleDelete)}
-        data={data}
+        columns={columns(handleDelete, handleModify)}
+        data={data ?? []}
         selectableRows
         selectableRowsSingle
+        progressPending={pending}
       />
       <RemoveModal
         setIsModalOpen={setIsRemoveModalOpen}
@@ -53,6 +63,12 @@ const Table = () => {
         setData={setData}
       />
       <AddModal setIsModalOpen={setIAddModalOpen} isModalOpen={isAddModalOpen} setData={setData} />
+      <ModifyModal
+        setIsModalOpen={setIsModifyModalOpen}
+        isModalOpen={isModifyModalOpen}
+        setData={setData}
+        selectedItem={selectedItem}
+      />
     </>
   );
 };
