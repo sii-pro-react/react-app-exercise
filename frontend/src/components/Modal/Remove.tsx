@@ -31,22 +31,23 @@ const Remove = ({ setIsModalOpen, isModalOpen, selectedItem, setData }: IRemoveM
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    if (!pending) {
+      setIsModalOpen(false);
+    }
   };
 
   return (
-    <>
-      <ModalAntD
-        title={`Do you really want to remove "${selectedItem?.name}"`}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        maskClosable={!pending}
-        closable={!pending}
-      >
-        <p>Element with ID - &quot;{selectedItem?.id}&quot; will be removed</p>
-      </ModalAntD>
-    </>
+    <ModalAntD
+      title={`Do you really want to remove "${selectedItem?.name}"`}
+      open={isModalOpen}
+      onOk={handleOk}
+      onCancel={handleCancel}
+      maskClosable={!pending}
+      closable={!pending}
+      confirmLoading={pending}
+    >
+      <p>Element with ID - &quot;{selectedItem?.id}&quot; will be removed</p>
+    </ModalAntD>
   );
 };
 

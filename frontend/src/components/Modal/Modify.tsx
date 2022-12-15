@@ -38,60 +38,53 @@ const Modify = ({ setIsModalOpen, isModalOpen, setData, selectedItem }: IModifyM
   };
 
   return (
-    <>
-      <ModalAntD
-        title={`Add new item`}
-        open={isModalOpen}
-        onCancel={handleCancel}
-        footer={false}
-        maskClosable={!pending}
-        closable={!pending}
+    <ModalAntD
+      title={`Add new item`}
+      open={isModalOpen}
+      onCancel={handleCancel}
+      footer={false}
+      maskClosable={!pending}
+      closable={!pending}
+    >
+      <Form
+        form={form}
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
+        disabled={pending}
       >
-        <Form
-          form={form}
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          autoComplete="off"
-          disabled={pending}
+        <Form.Item
+          label="Name"
+          name="name"
+          initialValue={selectedItem?.name}
+          rules={[{ required: true, message: 'Please input name!' }]}
         >
-          <Form.Item
-            label="Name"
-            name="name"
-            initialValue={selectedItem?.name}
-            rules={[{ required: true, message: 'Please input name!' }]}
-          >
-            <Input />
-          </Form.Item>
+          <Input />
+        </Form.Item>
 
-          <Form.Item
-            label="Description"
-            name="description"
-            initialValue={selectedItem?.description}
-            rules={[{ required: true, message: 'Please input description!' }]}
-          >
-            <Input />
-          </Form.Item>
+        <Form.Item
+          label="Description"
+          name="description"
+          initialValue={selectedItem?.description}
+          rules={[{ required: true, message: 'Please input description!' }]}
+        >
+          <Input />
+        </Form.Item>
 
-          <Form.Item
-            label="Is removable"
-            name="removable"
-            initialValue={selectedItem?.removable}
-            valuePropName="checked"
-          >
-            <Switch />
-          </Form.Item>
+        <Form.Item label="Is removable" name="removable" initialValue={selectedItem?.removable} valuePropName="checked">
+          <Switch />
+        </Form.Item>
 
-          <Form.Item className={classes.submitBtn}>
-            <Button type="primary" htmlType="submit" loading={pending}>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </ModalAntD>
-    </>
+        <Form.Item className={classes.submitBtn}>
+          <Button type="primary" htmlType="submit" loading={pending}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </ModalAntD>
   );
 };
 

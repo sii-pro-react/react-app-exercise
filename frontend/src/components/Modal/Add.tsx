@@ -37,49 +37,47 @@ const Add = ({ setIsModalOpen, isModalOpen, setData }: IAddModalProps) => {
   };
 
   return (
-    <>
-      <ModalAntD
-        title={`Add new item`}
-        open={isModalOpen}
-        onCancel={handleCancel}
-        footer={false}
-        maskClosable={!pending}
-        closable={!pending}
+    <ModalAntD
+      title={`Add new item`}
+      open={isModalOpen}
+      onCancel={handleCancel}
+      footer={false}
+      maskClosable={!pending}
+      closable={!pending}
+    >
+      <Form
+        form={form}
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
+        disabled={pending}
       >
-        <Form
-          form={form}
-          name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          autoComplete="off"
-          disabled={pending}
+        <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name!' }]}>
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[{ required: true, message: 'Please input description!' }]}
         >
-          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name!' }]}>
-            <Input />
-          </Form.Item>
+          <Input />
+        </Form.Item>
 
-          <Form.Item
-            label="Description"
-            name="description"
-            rules={[{ required: true, message: 'Please input description!' }]}
-          >
-            <Input />
-          </Form.Item>
+        <Form.Item label="Is removable" name="removable" valuePropName="checked">
+          <Switch />
+        </Form.Item>
 
-          <Form.Item label="Is removable" name="removable" valuePropName="checked">
-            <Switch />
-          </Form.Item>
-
-          <Form.Item className={classes.submitBtn}>
-            <Button type="primary" htmlType="submit" loading={pending}>
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </ModalAntD>
-    </>
+        <Form.Item className={classes.submitBtn}>
+          <Button type="primary" htmlType="submit" loading={pending}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </ModalAntD>
   );
 };
 
