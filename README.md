@@ -8,7 +8,9 @@ Running:
 
 
 ```
-cd frontend
-npm install
+cd backend
+npm i
+cd ../frontend
+npm i
 npm run dev
 ```
