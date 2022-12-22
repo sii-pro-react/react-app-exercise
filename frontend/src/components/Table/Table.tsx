@@ -40,8 +40,6 @@ const Table = () => {
         title="List of secret items 🐱‍👤"
         columns={columns}
         data={data ?? []}
-        selectableRows
-        selectableRowsSingle
         progressPending={pending}
       />
     </>
