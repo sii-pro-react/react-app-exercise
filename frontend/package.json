@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite --open",
     "backend": "cd ../backend && npm run start",
     "backend:delay": "cd ../backend && npm run start:delay",
     "dev": "concurrently --kill-others \"vite\" \"npm run backend\"",
