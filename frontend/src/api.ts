@@ -8,13 +8,7 @@ const headers = {
 };
 
 export const fetchData = async (): Promise<IDataItem[]> => {
-  const response = await fetch(`${path}/applications`, { headers });
-
-  if (response.ok) {
-    return await response.json();
-  }
-
-  throw new Error('Something went wrong');
+  return [];
 };
 
 export const deleteItem = async (id: string) => {
